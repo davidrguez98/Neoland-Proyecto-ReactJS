@@ -6,8 +6,8 @@
 }
 
 :root {
-    --primary-color: #2563eb;
-    --secondary-color: #1e40af;
+    --primary-color: #4b2e2b;
+    --secondary-color: #6b504d;
     --accent-color: #f59e0b;
     --success-color: #10b981;
     --danger-color: #ef4444;
@@ -564,16 +564,11 @@ body {
     justify-content: center;
     width: 50px;
     height: 50px;
-    background: var(--primary-color);
-    color: white;
+    background: white;
+    color: var(--primary-color);
     border-radius: 50%;
     text-decoration: none;
     transition: var(--transition);
-}
-
-.social-link:hover {
-    background: var(--secondary-color);
-    transform: translateY(-2px);
 }
 
 /* Nuevos Estilos para la Página de Contacto Profesional */
@@ -831,7 +826,7 @@ body {
 
 /* Footer */
 .footer {
-    background: var(--dark-color);
+    background: var(--primary-color);
     color: white;
     text-align: center;
     padding: 2rem 0;
@@ -1071,7 +1066,7 @@ body {
 
 .btn-create {
     width: 100%;
-    background-color: var(--success-color);
+    background-color: var(--primary-color);
     color: white;
     padding: 1rem 2rem;
     font-size: 1rem;
@@ -1084,7 +1079,7 @@ body {
 }
 
 .btn-create:hover {
-    background-color: #059669;
+    background-color: var(--secondary-color);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }

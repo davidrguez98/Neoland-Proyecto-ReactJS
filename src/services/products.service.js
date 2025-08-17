@@ -80,6 +80,30 @@ async function updateProductService(id, product) {
     }
 }
 
+async function deleteProductService(id) {
+    try {
+        const res = await fetch(`${API_URL_PRODUCTS}${id}`, {
+            method: 'DELETE'
+        })
+
+        if (!res.ok) { throw new Error(`Error: ${res.status}`) }
+
+        const data = await res.text()
+
+        return {
+            success: true,
+            data: data,
+            error: null
+        }
+    } catch (error) {
+        return {
+            success: false,
+            data: null,
+            error: error.message
+        }
+    }
+}
+
 async function newPurchase(purchaseData) {
     try {
 
@@ -109,4 +133,4 @@ async function newPurchase(purchaseData) {
     }
 }
 
-export { getProductsService, updateProductService, newPurchase, createProduct }
+export { getProductsService, updateProductService, newPurchase, createProduct, deleteProductService }

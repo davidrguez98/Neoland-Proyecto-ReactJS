@@ -6,6 +6,7 @@ import { PageTemplate } from './components/PageTemplate'
 import { HomePage } from './pages/home.page'
 import { ProductsProvider } from "./context/products.context";
 import { DashboardPage } from "./pages/dashboard.page";
+import { ContactPage } from "./pages/contact.page";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            {/* <Route path="/products/:id" element={<Producto />} /> */}
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </PageTemplate>
       </ProductsProvider>

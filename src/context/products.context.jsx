@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 
-import { getProductsService, updateProductService, newPurchase, createProduct } from '../services/products.service.js'
+import { getProductsService, updateProductService, newPurchase, createProduct, deleteProductService } from '../services/products.service.js'
 import { productsMock } from '../assets/mocks/product.mock.js'
 
 const ProductsContext = createContext()
@@ -61,17 +61,17 @@ function ProductsProvider(props) {
     }
 
     async function deleteProduct(id) {
-        const success = 0
-        const data = {}
-        const error = 'Error API'
+        const { success, data, error } = await deleteProductService(id)
 
         if (success) {
+            setProductosBBDD(prod => prod.filter(product => product._id !== id))
             console.log(`Producto eliminado: ${data}`)
         } else {
             setProductosBBDD(prod => prod.filter(product => product._id !== id))
             console.log('Error en API:', error)
         }
     }
+
     async function addNewPurchase(newProduct) {
         const purchaseData = {
             productName: newProduct.name,

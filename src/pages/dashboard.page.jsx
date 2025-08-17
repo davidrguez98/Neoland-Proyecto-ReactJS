@@ -107,7 +107,6 @@ export function DashboardPage() {
         try {
             await editProduct(editingProduct._id, updatedData)
             closeEditModal()
-            alert('Producto actualizado correctamente')
         } catch (error) {
             console.error('Error al actualizar producto:', error)
             alert('Error al actualizar el producto')
@@ -222,7 +221,7 @@ export function DashboardPage() {
                         </div>
                         <form onSubmit={handleEditSubmit} className="modal-form">
                             <div className="form-group">
-                                <label className="form-label">Nombre del producto</label>
+                                <label className="form-label">Nombre</label>
                                 <input 
                                     type="text" 
                                     name="name"
@@ -258,12 +257,8 @@ export function DashboardPage() {
                                 />
                             </div>
                             <div className="modal-actions">
-                                <button type="button" className="btn btn-secondary" onClick={closeEditModal}>
-                                    Cancelar
-                                </button>
-                                <button type="submit" className="btn btn-primary">
-                                    Actualizar Producto
-                                </button>
+                                <button type="button" className="btn btn-secondary" onClick={closeEditModal}>Cancelar</button>
+                                <button type="submit" className="btn btn-primary">Actualizar</button>
                             </div>
                         </form>
                     </div>

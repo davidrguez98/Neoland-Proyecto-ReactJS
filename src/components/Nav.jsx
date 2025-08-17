@@ -1,6 +1,12 @@
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
 
 export function Nav() {
+    const location = useLocation()
+
+    const isActive = (path) => {
+        return location.pathname === path ? 'nav-link active' : 'nav-link'
+    }
+
     return (
         <>
             <header className="header">
@@ -8,10 +14,9 @@ export function Nav() {
                     <nav className="nav">
                         <a href="/" className="nav-brand"><i className="bi bi-cup-hot"></i> CoffeeShop</a>
                         <ul className="nav-links">
-                            <Link to={'/'} className="nav-link active">Home</Link>
-                            <Link to={'/dashboard'} className="nav-link">Dashboard</Link>
-                            <Link to={'/product'} className="nav-link">Products</Link>
-                            <Link to={'/contact'} className="nav-link">Contact</Link>
+                            <Link to={'/'} className={isActive('/')}>Home</Link>
+                            <Link to={'/dashboard'} className={isActive('/dashboard')}>Dashboard</Link>
+                            <Link to={'/contact'} className={isActive('/contact')}>Contact</Link>
                         </ul>
                     </nav>
                 </div>
