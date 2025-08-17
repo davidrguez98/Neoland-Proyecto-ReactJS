@@ -23,14 +23,43 @@ async function getProductsService() {
     }
 }
 
+async function createProduct(productData) {
+    try {
+        const res = await fetch(API_URL_PRODUCTS, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productData)
+        })
+
+        if (!res.ok) { throw new Error(`Error: ${res.status}`)}
+
+        const data = await res.json()
+
+        return {
+            success: true,
+            data: data,
+            error: null
+        }
+    } catch (error) {
+        return {
+            success: false,
+            data: null,
+            error: error.message
+        }
+    }
+}
+
 async function updateProductService(id, product) {
     try {
-        const formData = new FormData()
-        Object.keys(product).forEach(key => formData.append(key, product[key]))
-
+    
         const res = await fetch(`${API_URL_PRODUCTS}${id}`, {
             method: 'PUT',
-            body: formData
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(product)
         })
 
         if (!res.ok) { throw new Error(`Error: ${res.status}`) }
@@ -53,18 +82,18 @@ async function updateProductService(id, product) {
 
 async function newPurchase(purchaseData) {
     try {
-        const formData = new FormData()
-        Object.keys(purchaseData).forEach(key => formData.append(key, purchaseData[key]))
-        formData.append('FORM', 'YO')
 
         const res = await fetch(API_URL_PURCHASES, {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(purchaseData)
         })
 
         if (!res.ok) { throw new Error(`Error: ${res.status}`) }
 
-        const data = await res.json()
+        const data = await res.text()
 
         return {
             success: true,
@@ -80,4 +109,4 @@ async function newPurchase(purchaseData) {
     }
 }
 
-export { getProductsService, updateProductService, newPurchase }
+export { getProductsService, updateProductService, newPurchase, createProduct }

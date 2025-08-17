@@ -5,6 +5,7 @@ import './index.css'
 import { PageTemplate } from './components/PageTemplate'
 import { HomePage } from './pages/home.page'
 import { ProductsProvider } from "./context/products.context";
+import { DashboardPage } from "./pages/dashboard.page";
 
 
 function App() {
@@ -15,8 +16,8 @@ function App() {
         <PageTemplate>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            {/* <Route path="/dashboard" element={<PanelControl />} />
-            <Route path="/products/:id" element={<Producto />} /> */}
+            <Route path="/dashboard" element={<DashboardPage />} />
+            {/* <Route path="/products/:id" element={<Producto />} /> */}
           </Routes>
         </PageTemplate>
       </ProductsProvider>
