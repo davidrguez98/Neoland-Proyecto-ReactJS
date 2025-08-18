@@ -1,3 +1,5 @@
+import { serviceError } from "../errors/error.funct.js"
+
 const API_URL_PRODUCTS = import.meta.env.VITE_API_URL_PRODUCTS
 const API_URL_PURCHASES = import.meta.env.VITE_API_URL_PURCHASES
 
@@ -15,11 +17,7 @@ async function getProductsService() {
         }
         
     } catch (error) {
-        return {
-            success: false,
-            data: [],
-            error: error.message
-        }
+        serviceError([], error)
     }
 }
 
@@ -43,11 +41,7 @@ async function createProduct(productData) {
             error: null
         }
     } catch (error) {
-        return {
-            success: false,
-            data: null,
-            error: error.message
-        }
+        serviceError(null, error)
     }
 }
 
@@ -72,11 +66,7 @@ async function updateProductService(id, product) {
             error: null
         }
     } catch (error) {
-        return {
-            success: false,
-            data: null,
-            error: error.message
-        }
+        serviceError(null, error)
     }
 }
 
@@ -96,11 +86,7 @@ async function deleteProductService(id) {
             error: null
         }
     } catch (error) {
-        return {
-            success: false,
-            data: null,
-            error: error.message
-        }
+        serviceError(null, error)
     }
 }
 
@@ -125,11 +111,7 @@ async function newPurchase(purchaseData) {
             error: null
         }
     } catch (error) {
-        return {
-            success: false,
-            data: null,
-            error: error.message
-        }
+        serviceError(null, error)
     }
 }
 

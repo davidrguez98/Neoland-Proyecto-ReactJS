@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from 'react'
 
 import { getProductsService, updateProductService, newPurchase, createProduct, deleteProductService } from '../services/products.service.js'
 import { productsMock } from '../assets/mocks/product.mock.js'
+import { contextError } from '../errors/error.funct.js'
 
 const ProductsContext = createContext()
 
@@ -19,7 +20,7 @@ function ProductsProvider(props) {
             setProductosBBDD(data)
         } else {
             setProductosBBDD(productsMock)
-            console.log(`Error ${error}`)
+            contextError(error)
         }
     }
 
@@ -31,8 +32,7 @@ function ProductsProvider(props) {
             await getProducts()
         } else {
             setProductosBBDD(prev => [...prev, { _id: Date.now(), ...newProductData }])
-            console.log(`Error en la API: ${error}`)
-            throw new Error(error)
+            contextError(error)
         }
     }
 
@@ -56,7 +56,7 @@ function ProductsProvider(props) {
                 }
                 return product
             }))
-            console.log('Error en API:', error)
+            contextError(error)
         }
     }
 
@@ -68,7 +68,7 @@ function ProductsProvider(props) {
             console.log(`Producto eliminado: ${data}`)
         } else {
             setProductosBBDD(prod => prod.filter(product => product._id !== id))
-            console.log('Error en API:', error)
+            contextError(error)
         }
     }
 
@@ -82,8 +82,9 @@ function ProductsProvider(props) {
 
         if (success) {
             console.log(`Venta enviada: ${data}`)
+            alert('Producto comprado')
         } else {
-            console.log('Error en API:', error)
+            contextError(error)
         }
     }
 

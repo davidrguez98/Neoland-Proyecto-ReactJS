@@ -1,6 +1,8 @@
 import { useContext, useState } from 'react'
 import { ProductsContext } from '../context/products.context'
 
+import { tryCatchError } from '../errors/error.funct.js'
+
 export function DashboardPage() {
     const { productsBBDD, editProduct, deleteProduct, addNewProduct } = useContext(ProductsContext)
     
@@ -62,8 +64,7 @@ export function DashboardPage() {
                 quantity: ''
             })
         } catch (error) {
-            console.error('Error al añadir producto:', error)
-            alert('Error al añadir el producto')
+            tryCatchError(error, 'añadir')
         }
     }
 
@@ -108,8 +109,7 @@ export function DashboardPage() {
             await editProduct(editingProduct._id, updatedData)
             closeEditModal()
         } catch (error) {
-            console.error('Error al actualizar producto:', error)
-            alert('Error al actualizar el producto')
+            tryCatchError(error, 'actualizar')
         }
     }
 
@@ -119,8 +119,7 @@ export function DashboardPage() {
             try {
                 await deleteProduct(id)
             } catch (error) {
-                console.error('Error al eliminar producto:', error)
-                alert('Error al eliminar el producto')
+                tryCatchError(error, 'eliminar')
             }
         }
     }
