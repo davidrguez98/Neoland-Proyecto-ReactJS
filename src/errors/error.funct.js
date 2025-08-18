@@ -11,6 +11,9 @@ function serviceError(data, error) {
     }
 }
 
-function contextError
+function contextError(error) {
+    console.log(`Error en la API: ${error}`)
+    throw new Error(error)
+}
 
 export { tryCatchError, serviceError, contextError }
